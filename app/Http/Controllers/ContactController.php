@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\Message;
 use App\Mail\Email;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\ContactAction;
 
 class ContactController extends Controller
 {
@@ -26,8 +27,11 @@ class ContactController extends Controller
         
        $job = (new ContactUsJob($data));
        dispatch($job);
+
+    //    auth()->user()->notify(new ContactAction('You have send an email. ' .  auth()->user()->name));
        
        return back()->with('success', 'Thanks for contacting us!');
 
     }
+
 }

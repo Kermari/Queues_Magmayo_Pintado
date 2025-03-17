@@ -24,4 +24,8 @@ Route::middleware('auth')->group(function () {
 Route::get('contact',[ContactController::class, 'index'])->name('contact.index');
 
 Route::post('contact',[ContactController::class, 'sendEmail'])->name('contact.sendEmail');
+Route::get('notifications', function (){
+    return view('Notification');
+}); 
+
 require __DIR__.'/auth.php';

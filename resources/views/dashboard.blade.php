@@ -14,4 +14,8 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <button type="button" onclick="window.location.href='notifications'" style="color: red;">Check Notifications</button>
+    </div>
 </x-app-layout>

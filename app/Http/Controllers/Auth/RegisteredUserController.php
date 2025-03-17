@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Notifications\WelcomeUser;
+use App\Notifications\ContactAction;
 
 class RegisteredUserController extends Controller
 {
@@ -44,6 +46,11 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        $user->notify(new WelcomeUser($user));
+
+        
+        auth()->user()->notify(new ContactAction('You have send an email. ' .  auth()->user()->name));
 
         return redirect(route('dashboard', absolute: false));
     }
